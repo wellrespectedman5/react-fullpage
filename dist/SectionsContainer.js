@@ -66,6 +66,9 @@ var SectionsContainer = function (_React$Component) {
             this._handleResize();
             window.addEventListener('resize', this._handleResize);
 
+            // Set initial slide always 1
+            this._setAnchor(0);
+
             if (!this.props.scrollBar) {
                 this._addCSS3Scroll();
                 this._handleAnchor(); //Go to anchor in case we found it in the URL
@@ -248,15 +251,15 @@ var SectionsContainer = function (_React$Component) {
                 distY,
                 threshold = 50,
                 //required min distance traveled to be considered swipe
-            restraint = 100,
+                restraint = 100,
                 // maximum distance allowed at the same time in perpendicular direction
-            allowedTime = 1000,
+                allowedTime = 1000,
                 // maximum time allowed to travel that distance
-            elapsedTime,
+                elapsedTime,
                 startTime,
                 handleswipe = function handleswipe(swipedir) {
-                console.log(swipedir);
-            };
+                    console.log(swipedir);
+                };
 
             touchsurface.addEventListener('touchstart', function (e) {
                 var touchobj = e.changedTouches[0];
@@ -371,14 +374,18 @@ var SectionsContainer = function (_React$Component) {
                     transform: _this5.state.activeSection === index ? 'scale(1.3)' : 'none'
                 };
 
-                return React.createElement('a', { href: '#' + link, key: index, className: _this5.props.navigationAnchorClass || 'Navigation-Anchor',
-                    style: _this5.props.navigationAnchorClass ? null : anchorStyle });
+                return React.createElement('a', {
+                    href: '#' + link, key: index, className: _this5.props.navigationAnchorClass || 'Navigation-Anchor',
+                    style: _this5.props.navigationAnchorClass ? null : anchorStyle
+                });
             });
 
             return React.createElement(
                 'div',
-                { className: this.props.navigationClass || 'Navigation',
-                    style: this.props.navigationClass ? null : navigationStyle },
+                {
+                    className: this.props.navigationClass || 'Navigation',
+                    style: this.props.navigationClass ? null : navigationStyle
+                },
                 anchors
             );
         }
